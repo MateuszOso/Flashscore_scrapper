@@ -62,26 +62,25 @@ class Scrapper:
 
             return matches
 
+    def get_match_ids(self, matches):
 
-    def get_odds_soup(self, matches):
         if matches:
             match_ids = [match['id'][4:] for match in matches if 'id' in match.attrs]
-            print(match_ids)
+            return match_ids
+    def get_odds_soup(self, match_ids):
+
             if match_ids:
                 url = f"https://www.flashscore.pl/mecz/{match_ids[0]}/#/zestawienie-kursow/kursy-1x2/koniec-meczu"
                 print(url)
                 return self.get_soup(url)
-        return None
 
-    def get_players_soup(self, matches):
-        if matches:
-            match_ids = [match['id'][4:] for match in matches if 'id' in match.attrs]
-            print(match_ids)
-            if match_ids:
-                url = f"https://www.flashscore.pl/mecz/{match_ids[0]}/#/szczegoly-meczu/sklady"
-                print(url)
-                return self.get_soup(url)
-        return None
+    def get_players_soup(self, match_ids):
+
+        if match_ids:
+            url = f"https://www.flashscore.pl/mecz/{match_ids[0]}/#/szczegoly-meczu/sklady"
+            print(url)
+            return self.get_soup(url)
+
 
 
 scraper = Scrapper()
@@ -89,8 +88,10 @@ scraper = Scrapper()
 main_soup = scraper.get_soup("https://www.flashscore.pl/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/")
 matches = scraper.get_newest_round(main_soup)
 
-odds_soup = scraper.get_odds_soup(matches)
+match_ids = scraper.get_match_ids(matches)
 time.sleep(10)
-players_soup = scraper.get_players_soup(matches)
+odds_soup = scraper.get_odds_soup(match_ids)
+time.sleep(10)
+players_soup = scraper.get_players_soup(match_ids)
 
 
