@@ -11,6 +11,7 @@ class Scrapper:
 
     def __init__(self):
         self.driver = self.get_driver()
+        self.match_ids = []
 
     def __del__(self):
         self.driver.quit()
@@ -106,17 +107,24 @@ class Scrapper:
             print(url)
             return self.get_soup(url)
 
+    def update_match_ids(self):
+        main_soup = scraper.get_soup("https://www.flashscore.pl/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/")
+        matches = scraper.get_newest_round(main_soup)
+        self.match_ids = self.get_match_ids(matches)
+
 
 
 scraper = Scrapper()
-
+scraper.update_match_ids()
+"""
 main_soup = scraper.get_soup("https://www.flashscore.pl/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/")
 matches = scraper.get_newest_round(main_soup)
 
 match_ids = scraper.get_match_ids(matches)
+
 time.sleep(10)
 odds_soup = scraper.get_odds_and_players_urls(match_ids)
 time.sleep(10)
 players_soup = scraper.get_players_soup(match_ids)
 print(odds_soup)
-
+"""
