@@ -26,7 +26,6 @@ class Odds:
             home_win_odds.append(self.get_valid_odds(odds_values, 0))
             draw_odds.append(self.get_valid_odds(odds_values, 1))
             away_win_odds.append(self.get_valid_odds(odds_values, 2))
-
         return home_win_odds, draw_odds, away_win_odds
 
     def get_valid_odds(self, odds_values, starting_index):

@@ -1,6 +1,5 @@
 import scraper
 
-
 class Match():
 
     def teams(self):
@@ -10,6 +9,7 @@ class Match():
             away_team = match.find('div', class_ = "event__participant--away").text.strip()
             teams_list.append(f"{home_team} - {away_team}")
         return teams_list
+
 
     def scores(self):
         scores_list = []

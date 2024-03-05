@@ -116,7 +116,7 @@ class Scrapper:
 
 scraper = Scrapper()
 scraper.update_match_ids()
-"""
+
 main_soup = scraper.get_soup("https://www.flashscore.pl/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/")
 matches = scraper.get_newest_round(main_soup)
 
@@ -126,5 +126,5 @@ time.sleep(10)
 odds_soup = scraper.get_odds_and_players_urls(match_ids)
 time.sleep(10)
 players_soup = scraper.get_players_soup(match_ids)
-print(odds_soup)
-"""
+
+
