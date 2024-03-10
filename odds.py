@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class Odds:
+
     def __init__(self, driver, scraper_instance):
         self.driver = driver
         self.scraper = scraper_instance

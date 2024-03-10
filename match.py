@@ -1,5 +1,4 @@
-
-class Match():
+class Match:
 
     def __init__(self, scraper_instance):
         self.scraper = scraper_instance

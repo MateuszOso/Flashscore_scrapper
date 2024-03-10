@@ -1,4 +1,3 @@
-
 import re
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -7,7 +6,6 @@ from bs4 import BeautifulSoup
 
 
 class Scrapper:
-
 
     def __init__(self):
         self.driver = self.get_driver()
@@ -44,7 +42,6 @@ class Scrapper:
 
             for round in rounds:
                 round_number_text = round.text
-                # Use regular expression to find numbers in the round text
                 match = re.search(r'\d+', round_number_text)
                 if match:
                     round_number = int(match.group())
@@ -61,7 +58,6 @@ class Scrapper:
                         if 'event__match' in current_match['class']:
                             matches.append(current_match)
 
-                        # It checks if the next round has been reached
                         elif 'event__round' in current_match['class'] and 'event__round--static' in current_match['class']:
                             break
 
@@ -99,12 +95,6 @@ class Scrapper:
             players_url_list.append(f"https://www.flashscore.pl/mecz/{match_id}/#/szczegoly-meczu/sklady")
 
         return odds_url_list, players_url_list
-
-    def get_players_soup(self, match_ids):
-
-        if match_ids:
-            url = f"https://www.flashscore.pl/mecz/{match_ids[0]}/#/szczegoly-meczu/sklady"
-            return self.get_soup(url)
 
     def update_match_ids(self):
         main_soup = self.get_soup("https://www.flashscore.pl/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/")
