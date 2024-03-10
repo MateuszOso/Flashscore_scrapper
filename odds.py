@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from scraper import scraper
+
 
 class Odds:
     def __init__(self, driver, scraper_instance):
@@ -34,6 +34,3 @@ class Odds:
             if odds.replace('.', '', 1).isdigit():
                 return odds
         return ''
-
-odds = Odds(scraper.driver, scraper)
-

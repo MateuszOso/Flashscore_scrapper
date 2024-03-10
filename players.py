@@ -1,4 +1,4 @@
-from scraper import scraper
+
 from bs4 import BeautifulSoup
 import time
 
@@ -44,7 +44,5 @@ class Players:
         return self.all_players
 
 
-players = Players(scraper.driver, scraper)
-players_data = players.get_all_players()
 
 
