@@ -2,6 +2,7 @@ class Match:
 
     def __init__(self, scraper_instance):
         self.scraper = scraper_instance
+#         Statyczne zmienne, takie jak URL'e raczej zapisujemy w osobnym pliku z którego je pobieramy, a nie w kodzie
         self.main_soup = self.scraper.get_soup("https://www.flashscore.pl/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/")
 
     def teams(self):
