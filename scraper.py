@@ -55,6 +55,7 @@ class Scrapper:
 
                 while current_match:
                     if 'class' in current_match.attrs:
+#                     Tak jak pisalem wczesniej, te nazwy zmiennych moga sie zmieniac, przeniesienie ich do obiektu konfiguracyjnego pozwoli nam łatwo je dostosowywac
                         if 'event__match' in current_match['class']:
                             matches.append(current_match)
 

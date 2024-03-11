@@ -31,6 +31,8 @@ class Players:
         section_title = soup.find_all(class_="section__title--center")
         participants, away_players = [], []
         for title in section_title:
+#         To też jest zmienna, która dosyc czesto jest zalezna od serwisu z ktorego korzystamy, warto byloby ja przeniesc do pliku konfiguracyjnego
+#        Plik konfiguracyjny moze byc zwyklym obiektem, w ktorym bedzie lista serwisow a kazdy serwis bedzie mial swoje stale takie jak URL, nazwa zmiennej dla skladu, nazwa zmiennej dla wyniku itp.
             if "Składy wyjściowe" in title.text:
                 container = title.find_next_sibling()
                 if container:
