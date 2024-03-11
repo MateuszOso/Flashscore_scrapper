@@ -7,7 +7,7 @@ from players import Players
 class CsvSaver:
 
 
-    def starter(self, filename='combined_data.csv'):
+    def saver(self, filename='Ekstraklasa_scores.csv'):
         scraper = Scrapper()
         scraper.update_match_ids()
 
