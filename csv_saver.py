@@ -25,15 +25,18 @@ class CsvSaver:
             writer = csv.writer(file)
             writer.writerow(['Teams', 'Scores', 'Date', 'Home Win Odds', 'Draw Odds', 'Away Win Odds', 'Home Players', 'Away Players'])
             for i in range(len(teams_list)):
-                writer.writerow([
-                    teams_list[i],
-                    scores_list[i],
-                    dates_list[i],
-                    home_win_odds[i],
-                    draw_odds[i],
-                    away_win_odds[i],
-                    "; ".join(players_list[i]['home_players']),
-                    "; ".join(players_list[i]['away_players'])
-                ])
-
+                try:
+                    writer.writerow([
+                        teams_list[i],
+                        scores_list[i],
+                        dates_list[i],
+                        home_win_odds[i],
+                        draw_odds[i],
+                        away_win_odds[i],
+                        "; ".join(players_list[i]['home_players']),
+                        "; ".join(players_list[i]['away_players'])
+                    ])
+                except IndexError as e:
+                    print((f"IndexError occurred while writing row {i}: {e} \nPlease try to rerun the code"))
+                    pass
 
