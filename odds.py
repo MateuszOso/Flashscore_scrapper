@@ -15,7 +15,7 @@ class Odds:
     def get_odds(self, url):
         self.driver.get(url)
         odds_elements = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, config["flashscore"]["dynamic_class_names"]["odds"]))
+            EC.presence_of_all_elements_located((By.CLASS_NAME, config["wyniki"]["dynamic_class_names"]["odds"]))
         )
         return [element.get_attribute('title') for element in odds_elements]
 

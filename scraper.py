@@ -33,7 +33,7 @@ class Scrapper:
 
     def get_newest_round(self, soup):
         try:
-            rounds = soup.find_all(class_=config["flashscore"]["dynamic_class_names"]["rounds"])
+            rounds = soup.find_all(class_=config["wyniki"]["dynamic_class_names"]["rounds"])
             if not rounds:
                 print("No rounds found.")
                 return []
@@ -56,10 +56,10 @@ class Scrapper:
 
                 while current_match:
                     if 'class' in current_match.attrs:
-                        if config["flashscore"]["dynamic_class_names"]["matches"] in current_match['class']:
+                        if config["wyniki"]["dynamic_class_names"]["matches"] in current_match['class']:
                             matches.append(current_match)
 
-                        elif config["flashscore"]["dynamic_class_names"]["basic_round"] in current_match['class'] and config["flashscore"]["dynamic_class_names"]["rounds"] in current_match['class']:
+                        elif config["wyniki"]["dynamic_class_names"]["basic_round"] in current_match['class'] and config["wyniki"]["dynamic_class_names"]["rounds"] in current_match['class']:
                             break
 
                     current_match = current_match.find_next_sibling()
@@ -88,13 +88,13 @@ class Scrapper:
         if not match_ids:
             print("No match IDs provided for URL generation.")
             return [], []
-        odds_url_list = [config["flashscore"]["base_url"] + config["flashscore"]["odds_endpoint"].format(match_id=mid) for mid in match_ids]
-        players_url_list = [config["flashscore"]["base_url"] + config["flashscore"]["players_endpoint"].format(match_id=mid) for mid in match_ids]
+        odds_url_list = [config["wyniki"]["base_url"] + config["wyniki"]["odds_endpoint"].format(match_id=mid) for mid in match_ids]
+        players_url_list = [config["wyniki"]["base_url"] + config["wyniki"]["players_endpoint"].format(match_id=mid) for mid in match_ids]
 
         return odds_url_list, players_url_list
 
     def update_match_ids(self):
-        main_soup = self.get_soup(config["flashscore"]["base_url"]+config["flashscore"]["matches_endpoint"])
+        main_soup = self.get_soup(config["wyniki"]["base_url"]+config["wyniki"]["matches_endpoint"])
         matches = self.get_newest_round(main_soup)
         self.match_ids = self.get_match_ids(matches)
 
