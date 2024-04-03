@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import time
+from config import config
+
 
 class Players:
 
@@ -28,16 +30,14 @@ class Players:
         self.all_players.append(match_players)
 
     def find_participants(self, soup):
-        section_title = soup.find_all(class_="section__title--center")
+        section_title = soup.find_all(class_= config["wyniki"]["dynamic_class_names"]["section_title"])
         participants, away_players = [], []
         for title in section_title:
-#         To też jest zmienna, która dosyc czesto jest zalezna od serwisu z ktorego korzystamy, warto byloby ja przeniesc do pliku konfiguracyjnego
-#        Plik konfiguracyjny moze byc zwyklym obiektem, w ktorym bedzie lista serwisow a kazdy serwis bedzie mial swoje stale takie jak URL, nazwa zmiennej dla skladu, nazwa zmiennej dla wyniku itp.
-            if "Składy wyjściowe" in title.text:
+            if config["wyniki"]["titles"]["starting_lineup"] in title.text:
                 container = title.find_next_sibling()
                 if container:
-                    participants.extend(container.select(".lf__participant"))
-                    away_players.extend(container.select(".lf__isReversed"))
+                    participants.extend(container.select(config["wyniki"]["dynamic_class_names"]["home_participants"]))
+                    away_players.extend(container.select(config["wyniki"]["dynamic_class_names"]["away_participants"]))
         home_players = [player for player in participants if player not in away_players]
         return home_players, away_players
 

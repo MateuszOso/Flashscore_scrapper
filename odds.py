@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from config import config
 
 
 class Odds:
@@ -14,7 +15,7 @@ class Odds:
     def get_odds(self, url):
         self.driver.get(url)
         odds_elements = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, 'oddsCell__odd'))
+            EC.presence_of_all_elements_located((By.CLASS_NAME, config["wyniki"]["dynamic_class_names"]["odds"]))
         )
         return [element.get_attribute('title') for element in odds_elements]
 
