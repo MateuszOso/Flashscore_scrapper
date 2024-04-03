@@ -74,7 +74,7 @@ class Scrapper:
             if not matches:
                 print("No matches provided to extract IDs from.")
                 return []
-
+#TODO Bierz cały ID
             match_ids = [match['id'][4:] for match in matches if 'id' in match.attrs]
             if not match_ids:
                 print("No valid match IDs found.")
@@ -88,6 +88,7 @@ class Scrapper:
         if not match_ids:
             print("No match IDs provided for URL generation.")
             return [], []
+        #  TODO, Otypowanie configu
         odds_url_list = [config["wyniki"]["base_url"] + config["wyniki"]["odds_endpoint"].format(match_id=mid) for mid in match_ids]
         players_url_list = [config["wyniki"]["base_url"] + config["wyniki"]["players_endpoint"].format(match_id=mid) for mid in match_ids]
 

@@ -22,6 +22,11 @@ class CsvSaver:
         players_list = player.all_players
 
         with open(filename, 'w', newline='', encoding='utf-8') as file:
+            '''
+            TODO,
+            1. Dane do excela to przede wszystkim grające drużyny, data meczu i scoring  (z każdego serwisu)
+            2. Na poczatek weź wyniki z flascsore dla każdego serwisu (w osobnych kolumanch) a potem scoring z dedykowanych seriwsów (w osobnych kolumnach)
+            '''
             writer = csv.writer(file)
             writer.writerow(['Teams', 'Scores', 'Date', 'Home Win Odds', 'Draw Odds', 'Away Win Odds', 'Home Players', 'Away Players'])
             for i in range(len(teams_list)):
