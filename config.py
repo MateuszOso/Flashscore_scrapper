@@ -1,4 +1,5 @@
 config = {
+    # TODO, otypowac/dodac interfers dla config (tak zeby sie podpowiadalo jak w klasach)
     "flashscore" : {
         "base_url": "https://www.flashscore.pl",
         "matches_endpoint": "/pilka-nozna/polska/pko-bp-ekstraklasa/wyniki/",
