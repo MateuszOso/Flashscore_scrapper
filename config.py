@@ -22,7 +22,7 @@ config = {
             "starting_lineup": "Składy wyjściowe"
         }
     },
-    "wyniki" : {
+    "score_page" : {
         "base_url": "https://www.wyniki.pl",
         "matches_endpoint": "/pko-bp-ekstraklasa/wyniki/",
         "odds_endpoint": "/mecz/{match_id}/#/zestawienie-kursow/kursy-1x2/koniec-meczu",
@@ -45,5 +45,4 @@ config = {
         }
     }
 }
-
 

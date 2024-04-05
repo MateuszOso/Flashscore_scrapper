@@ -30,14 +30,14 @@ class Players:
         self.all_players.append(match_players)
 
     def find_participants(self, soup):
-        section_title = soup.find_all(class_= config["wyniki"]["dynamic_class_names"]["section_title"])
+        section_title = soup.find_all(class_= config["score_page"]["dynamic_class_names"]["section_title"])
         participants, away_players = [], []
         for title in section_title:
-            if config["wyniki"]["titles"]["starting_lineup"] in title.text:
+            if config["score_page"]["titles"]["starting_lineup"] in title.text:
                 container = title.find_next_sibling()
                 if container:
-                    participants.extend(container.select(config["wyniki"]["dynamic_class_names"]["home_participants"]))
-                    away_players.extend(container.select(config["wyniki"]["dynamic_class_names"]["away_participants"]))
+                    participants.extend(container.select(config["score_page"]["dynamic_class_names"]["home_participants"]))
+                    away_players.extend(container.select(config["score_page"]["dynamic_class_names"]["away_participants"]))
         home_players = [player for player in participants if player not in away_players]
         return home_players, away_players
 
